@@ -1,4 +1,6 @@
-package HospedeiroOrigemTCP.src;
+package HospedeiroOrigemTCP;
+
+import HospedeiroComum.Mensagem;
 
 import java.net.*;
 
@@ -32,9 +34,9 @@ public class HospedeiroOrigemTCP {
 
         ObjectOutputStream saida = new ObjectOutputStream(clienteSocket.getOutputStream());
         
-        String arquivoNome = arquivo.getName();
-        saida.writeUTF(arquivoNome);
-        saida.write(arquivoBytes);
+        saida.writeObject(new Mensagem(arquivo.getName(), arquivoBytes));
+        // saida.writeUTF(arquivoNome);
+        // saida.write(arquivoBytes);
 
         saida.flush();
         saida.close();
